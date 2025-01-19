@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../../static/css/style.css">
+  <title>Расчет энергоэффективности умного дома</title>
+</head>
+<body>
+  <header class="header">
+    <div class="header__text">
+      <h1>Расчитай энергоэффективность своего дома!</h1>
+      <p>Реши проблему излишнего электропотребления самостоятельно!</p>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}
+    <div class="form-container">
+      <form action="{{ url_for('index') }}" method="post" class="form">
+        <h2>Заполните форму для расчета</h2>
+        
+        <div class="form-group">
+          <label for="name">Ф.И.О</label>
+          <input type="text" name="name" id="name" placeholder="Введите ваше ФИО" required value="{{ name }}">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" name="email" id="email" placeholder="Введите ваш e-mail" required value="{{ email }}">
+        </div>
+        
+        <div class="form-group">
+          <label for="company">Название компании</label>
+          <input type="text" name="company" id="company" placeholder="Введите название вашей компании" required value="{{ company }}">
+        </div>
+
+        <div class="form-action">
+          <button class="button" type="submit">Готово!</button>
+        </div>
+      </form>
+
+      <!-- Anzeige der Formulardaten, wenn sie abgeschickt wurden -->
+      {% if name %}
+      <div class="form-result">
+        <h2>Ваши данные:</h2>
+        <p><strong>Ф.И.О:</strong> {{ name }}</p>
+        <p><strong>E-mail:</strong> {{ email }}</p>
+        <p><strong>Компания:</strong> {{ company }}</p>  <!-- Hier wird der Unternehmensname angezeigt -->
+      </div>
+      {% endif %}
+    </div>
+    {% endblock %}
+  </main>
+
+  <footer>
+    <!-- Footer content can go here -->
+  </footer>
+</body>
+</html>
